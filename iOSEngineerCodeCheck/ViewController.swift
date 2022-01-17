@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UITableViewController, UISearchBarDelegate {
+class ViewController: UITableViewController {
 
     @IBOutlet weak var SchBr: UISearchBar!
     
@@ -64,7 +64,9 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         }
         
     }
-    
+}
+
+extension ViewController: UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repo.count
     }
@@ -86,5 +88,4 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         performSegue(withIdentifier: "Detail", sender: self)
         
     }
-    
 }
