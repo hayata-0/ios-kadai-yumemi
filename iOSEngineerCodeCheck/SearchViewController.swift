@@ -26,8 +26,8 @@ class SearchViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "Detail"{
-            let detailVC = segue.destination as! DetailViewController
-            detailVC.repo = repos[idx]
+            let detailVC = segue.destination as? DetailViewController
+            detailVC?.repo = repos[idx]
         }
         
     }
@@ -56,6 +56,7 @@ class SearchViewController: UITableViewController {
 }
 
 extension SearchViewController: UISearchBarDelegate {
+    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         // ↓こうすれば初期のテキストを消せる
         searchBar.text = ""
