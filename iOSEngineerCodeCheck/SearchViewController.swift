@@ -74,12 +74,12 @@ extension SearchViewController: UISearchBarDelegate {
         let urlString = "https://api.github.com/search/repositories?q=\(word)"
 
         guard let url = URL(string: urlString) else { return }
-        task = URLSession.shared.dataTask(with: url) { (data, res, err) in
+        task = URLSession.shared.dataTask(with: url) { [weak self] (data, res, err) in
                 if let obj = try! JSONSerialization.jsonObject(with: data!) as? [String: Any] {
                     if let items = obj["items"] as? [[String: Any]] {
-                    self.repos = items
+                    self?.repos = items
                         DispatchQueue.main.async {
-                            self.tableView.reloadData()
+                            self?.tableView.reloadData()
                         }
                     }
                 }
