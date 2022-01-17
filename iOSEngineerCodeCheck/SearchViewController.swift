@@ -14,7 +14,7 @@ class SearchViewController: UITableViewController {
     
     var repos: [[String: Any]]=[]
     var task: URLSessionTask?
-    var idx: Int!
+    var idx: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class SearchViewController: UITableViewController {
         
         if segue.identifier == "Detail"{
             let detailVC = segue.destination as? DetailViewController
-            detailVC?.repo = repos[idx]
+            detailVC?.repo = repos[idx!]
         }
         
     }
