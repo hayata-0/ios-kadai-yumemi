@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var starsCountLabel: UILabel!
     @IBOutlet weak var wathcersCountLabel: UILabel!
     @IBOutlet weak var forksCountLabel: UILabel!
-    @IBOutlet weak var issuesCountLabel: UILabel!
+    @IBOutlet weak var openIssuesCountLabel: UILabel!
     
     var repo = [String: Any]()
     
@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
         starsCountLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
         wathcersCountLabel.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
         forksCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        issuesCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
+        openIssuesCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
         getImage()
         
     }

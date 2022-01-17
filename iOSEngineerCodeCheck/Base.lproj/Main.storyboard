@@ -138,8 +138,8 @@
                     <navigationItem key="navigationItem" id="J6o-vL-S1z"/>
                     <connections>
                         <outlet property="forksCountLabel" destination="ZMv-4f-X2V" id="Qmy-T3-pMJ"/>
-                        <outlet property="issuesCountLabel" destination="dzg-K8-h2L" id="c52-t2-EFC"/>
                         <outlet property="languageLabel" destination="s3M-QO-Kom" id="X3t-6j-BfE"/>
+                        <outlet property="openIssuesCountLabel" destination="dzg-K8-h2L" id="1Df-G7-pT5"/>
                         <outlet property="profileImageView" destination="Iim-eb-8Ad" id="j7s-DW-GkA"/>
                         <outlet property="starsCountLabel" destination="0WZ-UA-R8O" id="rAT-8N-vRB"/>
                         <outlet property="titleLabel" destination="4q1-pG-WSB" id="twG-SI-DRi"/>
