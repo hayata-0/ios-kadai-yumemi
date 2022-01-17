@@ -30,18 +30,21 @@ class DetailViewController: UIViewController {
     }
     
     private func configure(item: Item) {
+        
         languageLabel.text = item.language.map { "Written in \($0)" }
         starsCountLabel.text = "\(item.stargazersCount) stars"
         wathcersCountLabel.text = "\(item.watchersCount) watchers"
         forksCountLabel.text = "\(item.forksCount) forks"
         openIssuesCountLabel.text = "\(item.openIssuesCount) open issues"
         titleLabel.text = item.fullName
+        
         if let ownerUrl = URL(string: item.owner.avatarUrl) {
             getImage(url: ownerUrl)
         }
     }
     
     private func getImage(url: URL){
+        
         URLSession.shared.dataTask(with: url) { (data, res, err) in
             guard let data = data, err == nil else {
                 print(err ?? "Unknown error")

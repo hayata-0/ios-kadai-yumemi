@@ -14,6 +14,7 @@ struct SearchResponse: Decodable {
     }
 }
 
+// 詳細ページのItem
 struct Item: Decodable {
     let id: Int
     let fullName: String
