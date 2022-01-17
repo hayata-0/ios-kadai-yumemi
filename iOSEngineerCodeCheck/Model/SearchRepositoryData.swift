@@ -6,18 +6,18 @@
 //  Copyright © 2022 YUMEMI Inc. All rights reserved.
 //
 
-struct SearchRepositories: Decodable {
-    let items: [Repository]
+struct SearchResponse: Decodable {
+    let items: [Item]
 
     private enum CodingKeys: String, CodingKey {
         case items
     }
 }
 
-struct Repository: Decodable {
+struct Item: Decodable {
     let id: Int
     let fullName: String
-    let language: String
+    let language: String?
     let stargazersCount: Int
     let watchersCount: Int
     let forksCount: Int

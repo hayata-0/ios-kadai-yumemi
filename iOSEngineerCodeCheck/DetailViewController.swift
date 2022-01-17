@@ -18,35 +18,41 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forksCountLabel: UILabel!
     @IBOutlet weak var openIssuesCountLabel: UILabel!
     
-    var repo = [String: Any]()
+    var item: Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        languageLabel.text = "Written in \(repo["language"] as? String ?? "")"
-        starsCountLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        wathcersCountLabel.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
-        forksCountLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        openIssuesCountLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
-        getImage()
-        
-    }
-    
-    func getImage(){
-        
-        titleLabel.text = repo["full_name"] as? String
-        
-        if let owner = repo["owner"] as? [String: Any] {
-            if let imgURL = owner["avatar_url"] as? String {
-                URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
-                    let img = UIImage(data: data!)!
-                    DispatchQueue.main.async { [weak self] in
-                        self?.profileImageView.image = img
-                    }
-                }.resume()
-            }
+        if let item = item {
+            configure(item: item)
         }
         
     }
     
+    private func configure(item: Item) {
+        languageLabel.text = item.language.map { "Written in \($0)" }
+        starsCountLabel.text = "\(item.stargazersCount) stars"
+        wathcersCountLabel.text = "\(item.watchersCount) watchers"
+        forksCountLabel.text = "\(item.forksCount) forks"
+        openIssuesCountLabel.text = "\(item.openIssuesCount) open issues"
+        titleLabel.text = item.fullName
+        if let ownerUrl = URL(string: item.owner.avatarUrl) {
+            getImage(url: ownerUrl)
+        }
+    }
+    
+    private func getImage(url: URL){
+        URLSession.shared.dataTask(with: url) { (data, res, err) in
+            guard let data = data, err == nil else {
+                print(err ?? "Unknown error")
+                return
+            }
+
+            if let avatarImage = UIImage(data: data) {
+                DispatchQueue.main.async { [weak self] in
+                    self?.profileImageView.image = avatarImage
+                }
+            }
+        }.resume()
+    }
 }
