@@ -20,6 +20,7 @@ class SearchViewController: UITableViewController {
         super.viewDidLoad()
         
         searchBar.text = "GitHubのリポジトリを検索できるよー"
+        searchBar.searchTextField.textColor = .white
         searchBar.delegate = self
     }
     
